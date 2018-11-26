@@ -1,3 +1,52 @@
+/* Landing Page */
+
+#landing-pg {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#menu {
+    background-color: #fc5e2e;
+    height: 100%;
+}
+
+@font-face {
+    font-family: 'Hensa';
+    src:url("../Style\ Guide/Fonts/Hensa/Hensa.otf")
+}
+
+#logo {
+    text-align: center;
+    font-family: 'Hensa';
+    color: white;
+    font-size: 1500%;
+}
+
+#tagline {
+    text-align: center;
+    padding-top: 20px;
+    font-family: 'Lato';
+    color: white;
+    font-size: 200%;
+}
+
+@media screen and (max-width: 600px){
+
+    #image {
+        display: none;
+    }
+    
+    #menu {
+        background-color: #fc5e2e;
+        height: 100%;
+        width: 100%;
+    }
+
+}
+
+/* Shopping Cart */
+
 nav {
     height: auto;
     background-color: #34489f;
@@ -17,6 +66,8 @@ nav {
     border: gray thin solid;
 }
 
+/* Search Pg */
+
 .searchBarside {
 
 background-color: aqua;
@@ -27,4 +78,3 @@ font-weight: bold;
 padding: 20px;
 border: 24px;
 }
-
