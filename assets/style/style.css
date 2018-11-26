@@ -16,3 +16,15 @@ nav {
 .test-border {
     border: gray thin solid;
 }
+
+.searchBarside {
+
+background-color: aqua;
+color: antiquewhite;
+text-align: center;
+font-size: 45px;
+font-weight: bold;
+padding: 20px;
+border: 24px;
+}
+
