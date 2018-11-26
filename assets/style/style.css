@@ -11,6 +11,26 @@
     height: 100%;
 }
 
+@font-face {
+    font-family: 'Hensa';
+    src:url("../Style\ Guide/Fonts/Hensa/Hensa.otf")
+}
+
+#logo {
+    text-align: center;
+    font-family: 'Hensa';
+    color: white;
+    font-size: 1500%;
+}
+
+#tagline {
+    text-align: center;
+    padding-top: 20px;
+    font-family: 'Lato';
+    color: white;
+    font-size: 200%;
+}
+
 @media screen and (max-width: 600px){
 
     #image {
