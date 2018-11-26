@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 
 
 GraphicBurger License
 
 
+=======
+
+
+GraphicBurger License
+
+
+>>>>>>> master
 All resources available for download on GraphicBurger, including but not limited to Logo MockUps, Product MockUps, Text Effects, Icons, User Interfaces, Illustrations, Background Images are royalty free for use in both personal and commercial projects.
 
 Rights
