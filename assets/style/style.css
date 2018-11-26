@@ -31,6 +31,28 @@
     font-size: 200%;
 }
 
+.input-field label {
+    color: white;
+    font-family: 'Lato';
+}
+
+.input-field input:focus + label {
+    color: white !important;
+  }
+
+#keyword-index {
+    color: white;
+    font-family: 'Lato';
+    border-bottom: 1px solid white !important; 
+}
+
+#keyword-index:focus {
+    border-bottom: 1px solid white !important;
+    -webkit-box-shadow: 0 1px 0 0 white;
+    box-shadow: 0 1px 0 0 white;
+}
+
+
 @media screen and (max-width: 780px){
 
     #logo{
