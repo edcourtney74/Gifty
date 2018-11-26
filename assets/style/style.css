@@ -31,6 +31,12 @@
     font-size: 200%;
 }
 
+@media screen and (max-width: 780px){
+
+    #logo{
+        font-size: 1000%;
+    }
+}
 @media screen and (max-width: 600px){
 
     #image {
@@ -41,6 +47,10 @@
         background-color: #fc5e2e;
         height: 100%;
         width: 100%;
+    }
+
+    #logo{
+        font-size: 1500%;
     }
 
 }
