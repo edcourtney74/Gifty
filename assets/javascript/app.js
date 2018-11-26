@@ -10,28 +10,38 @@ $(document).ready(function () {
         // event.preventDefault() prevents the form from trying to submit itself.
         event.preventDefault();
 
+        console.log("Button clicked!")
+
         // Create variable containing user keywords
-        var keywords = $("#keyword-index").val().trim();
+        var keywords = $("#keyword-search").val().trim();
 
         // Create variable containing user min price
-        var minPrice = $("#minprice-index").val().trim();
+        var minPrice = $("#minprice-search").val().trim();
 
         // Create variable containing user max price
-        var maxPrice = $("#maxprice-index").val().trim(); 
+        var maxPrice = $("#maxprice-search").val().trim(); 
 
         // Create Etsy queryURL for API requests
         queryURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywords + "&min_price=" + minPrice + "&max_price=" + maxPrice;
         console.log("Query URL: " + queryURL);
 
+        // TEST AJAX Etsy request based on user submission
+        $.ajax({
+            url: "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1",
+            method: "GET"
+        }).then(function(res) {
+            console.log(res);
+        })
+        
         // Creat AJAX Etsy request based on user submission
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function (res) {
+        }).then(function(res) {
             console.log(res);
-        }
+        })
+    })
     
-    }) 
 
 
 });
