@@ -36,6 +36,10 @@
     #logo{
         font-size: 1000%;
     }
+
+    #tagline {
+        font-size: 180%;
+    }
 }
 @media screen and (max-width: 600px){
 
@@ -51,6 +55,10 @@
 
     #logo{
         font-size: 1500%;
+    }
+
+    #tagline {
+        font-size: 200%;
     }
 
 }
