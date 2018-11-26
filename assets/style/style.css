@@ -1,1 +1,26 @@
 /* Landing Page */
+
+#landing-pg {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#menu {
+    background-color: #fc5e2e;
+    height: 100%;
+}
+
+@media screen and (max-width: 600px){
+
+    #image {
+        display: none;
+    }
+    
+    #menu {
+        background-color: #fc5e2e;
+        height: 100%;
+        width: 100%;
+    }
+
+}
