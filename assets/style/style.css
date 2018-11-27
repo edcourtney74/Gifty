@@ -9,6 +9,7 @@
 #menu {
     background-color: #fc5e2e;
     height: 100%;
+    overflow: scroll;
 }
 
 @font-face {
@@ -31,6 +32,73 @@
     font-size: 200%;
 }
 
+#search-bar {
+    margin-left: 10%;
+}
+
+.input-field col m6 {
+    margin-left: 15%;
+}
+
+.input-field label {
+    color: white;
+    font-family: 'Lato';
+}
+
+.input-field input:focus + label {
+    color: white !important;
+  }
+
+#keyword-index {
+    color: white;
+    font-family: 'Lato';
+    border-bottom: 1px solid white !important; 
+    display: inline;
+}
+
+#keyword-index:focus {
+    border-bottom: 1px solid white !important;
+    -webkit-box-shadow: 0 1px 0 0 white;
+    box-shadow: 0 1px 0 0 white;
+}
+
+#search-index {
+    font-family: 'Lato';
+    display: inline-block;
+    background-color: white;
+    color: #fc5e2e;
+    margin-top: 20px;
+}
+
+#search-index:hover {
+    opacity: .5;
+}
+
+
+@media screen and (max-width: 780px){
+
+    #logo{
+        font-size: 1000%;
+    }
+
+    #tagline {
+        font-size: 180%;
+    }
+
+    #keyword-index {
+        margin: 0 15% 0 15%;
+    }
+
+    .input-field label {
+        margin: 0 15% 0 15%;
+    }
+
+    #search-index {
+        margin: 15% 35% 0 35%;
+    }
+
+}
+
 @media screen and (max-width: 600px){
 
     #image {
@@ -41,6 +109,24 @@
         background-color: #fc5e2e;
         height: 100%;
         width: 100%;
+    }
+
+    #logo{
+        font-size: 1500%;
+    }
+
+    #tagline {
+        font-size: 200%;
+    }
+  
+    #keyword-index, .input-field label {
+        margin: 0;
+        margin-top: 5%;
+    }
+  
+    .input-field {
+        width: 80%;
+        margin: 0;
     }
 
 }
@@ -61,10 +147,6 @@ nav {
 
 .item-list {
     margin-top: 80px;
-}
-
-.test-border {
-    border: gray thin solid;
 }
 
 @media screen and (max-width: 786px){
@@ -100,7 +182,6 @@ nav {
 /* Search Pg */
 
 .searchBarside {
-
 background-color: rgb(1, 105, 131);
 color: antiquewhite;
 text-align: center;
