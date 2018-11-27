@@ -31,6 +31,14 @@
     font-size: 200%;
 }
 
+#search-bar {
+    margin-left: 10%;
+}
+
+.input-field col m6 {
+    margin-left: 15%;
+}
+
 .input-field label {
     color: white;
     font-family: 'Lato';
@@ -44,12 +52,21 @@
     color: white;
     font-family: 'Lato';
     border-bottom: 1px solid white !important; 
+    display: inline;
 }
 
 #keyword-index:focus {
     border-bottom: 1px solid white !important;
     -webkit-box-shadow: 0 1px 0 0 white;
     box-shadow: 0 1px 0 0 white;
+}
+
+#search-index {
+    font-family: 'Lato';
+    display: inline-block;
+    background-color: white;
+    color: #fc5e2e;
+    margin-top: 20px;
 }
 
 
@@ -62,6 +79,19 @@
     #tagline {
         font-size: 180%;
     }
+
+    #keyword-index {
+        margin: 0 15% 0 15%;
+    }
+
+    .input-field label {
+        margin: 0 15% 0 15%;
+    }
+
+    #search-index {
+        margin: 15% 35% 0 35%;
+    }
+
 }
 @media screen and (max-width: 600px){
 
@@ -82,5 +112,20 @@
     #tagline {
         font-size: 200%;
     }
+
+    #keyword-index, .input-field label {
+        margin: 0;
+        margin-top: 5%;
+    }
+
+    .input-field{
+        width: 80%;
+        margin: 0;
+    }
+
+    #search-index {
+        margin-left: 40%;
+    }
+
 
 }
