@@ -179,20 +179,39 @@ img {
 
 /********* Search Page *********/
 
+/* Whole Page */
+
+#search-pg {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: 'Lato';
+}
+
 /* Large Search Bar Right */
 
 .searchBarside {
-    background-color: rgb(1, 105, 131);
-    color: antiquewhite;
-    text-align: center;
+    background-color:#20b88f;
+    width: 100%;
+    height: 100%;
     padding: 20px;
-    border: 24px;
+    text-align: center;
 }
     
 #gifty {
     font-family: 'Hensa';
-    font-size: 35px;    
-}    
+    color: white;
+    font-size: 35px;
+    float: left;
+    padding: 0% 0% 0% 10%; 
+}
+
+#cart-icon {
+    width: 40px;
+    height: 40px;
+    float: right;
+    margin: 12% 12% 0% 0%;
+}
 
 /********* Shopping Cart *********/
 
