@@ -1,10 +1,14 @@
-/* Landing Page */
+/********* Landing Page *********/
+
+/* Whole Page */
 
 #landing-pg {
     width: 100%;
     height: 100%;
     margin: 0;
 }
+
+/* Right Side of Page */
 
 #menu {
     background-color: #fc5e2e;
@@ -32,6 +36,8 @@
     font-size: 200%;
 }
 
+/* Search Bar */
+
 #search-bar {
     margin-left: 10%;
 }
@@ -47,7 +53,7 @@
 
 .input-field input:focus + label {
     color: white !important;
-  }
+}
 
 #keyword-index {
     color: white;
@@ -74,16 +80,23 @@
     opacity: .5;
 }
 
+/* Media Queries */
 
-@media screen and (max-width: 780px){
+/* 780px - Tablet */
 
-    #logo{
+@media screen and (max-width: 780px) {
+
+    /* Right Side of Page */
+
+    #logo {
         font-size: 1000%;
     }
 
     #tagline {
         font-size: 180%;
     }
+
+    /* Search Bar */
 
     #keyword-index {
         margin: 0 15% 0 15%;
@@ -99,11 +112,17 @@
 
 }
 
-@media screen and (max-width: 600px){
+/* 600px - Phone */
+
+@media screen and (max-width: 600px) {
+
+    /* Left Side of Page */
 
     #image {
         display: none;
     }
+
+    /* Right Side of Page */
     
     #menu {
         background-color: #fc5e2e;
@@ -111,13 +130,15 @@
         width: 100%;
     }
 
-    #logo{
+    #logo {
         font-size: 1500%;
     }
 
     #tagline {
         font-size: 200%;
     }
+
+    /* Search Bar */
   
     #keyword-index, .input-field label {
         margin: 0;
@@ -131,7 +152,26 @@
 
 }
 
-/* Shopping Cart */
+/********* Search Page *********/
+
+/* Large Search Bar Right */
+
+.searchBarside {
+    background-color: rgb(1, 105, 131);
+    color: antiquewhite;
+    text-align: center;
+    padding: 20px;
+    border: 24px;
+}
+    
+#gifty {
+    font-family: 'Hensa';
+    font-size: 35px;    
+}    
+
+/********* Shopping Cart *********/
+
+/* Header */
 
 nav {
     height: auto;
@@ -145,11 +185,18 @@ nav {
     margin-bottom: 10px;
 }
 
+/* Item List */
+
 .item-list {
     margin-top: 80px;
 }
 
-@media screen and (max-width: 786px){
+/* Media Queries */
+
+/* 786px - Tablet */
+
+@media screen and (max-width: 786px) {
+
     .cart-title {
         font-size: 30px;
         margin-top: 10px;
@@ -160,7 +207,10 @@ nav {
     }
 }
 
-@media screen and (max-width: 620px){
+/* 620px - Phone */
+
+@media screen and (max-width: 620px) {
+
     .cart-title {
         font-size: 30px;
         margin-top: 10px;
@@ -177,19 +227,4 @@ nav {
         margin-bottom: 0px;
     }
    
-}
-
-/* Search Pg */
-
-.searchBarside {
-background-color: rgb(1, 105, 131);
-color: antiquewhite;
-text-align: center;
-padding: 20px;
-border: 24px;
-}
-
-#gifty {
-font-family: 'Hensa';
-font-size: 35px;    
 }
