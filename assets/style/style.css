@@ -70,11 +70,14 @@ nav {
 
 .searchBarside {
 
-background-color: aqua;
+background-color: rgb(1, 105, 131);
 color: antiquewhite;
 text-align: center;
-font-size: 45px;
-font-weight: bold;
 padding: 20px;
 border: 24px;
+}
+
+#gifty {
+font-family: 'Hensa';
+font-size: 35px;    
 }
