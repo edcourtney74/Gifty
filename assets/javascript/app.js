@@ -1,8 +1,15 @@
 // GLOBAL VARIABLES
+// Variable containing user keywords
+var keywords = "";
+
+// Variable containing user min price, set to 0 in case user doesn't specify
+var minPrice = 0;
+
+// Variable containing user max price, set to 1,000,000 in case user doesn't specify
+var maxPrice = 1000000000;
 
 // FUNCTIONS
-$(document).ready(function () {
-
+$(document).ready(function () {  
 
 // CLICK FUNCTIONS
     // Retrieve values from search on search.html
@@ -13,21 +20,28 @@ $(document).ready(function () {
         // VARIABLES FOR API REQUESTS=======================================
         
         // Create variable containing user keywords
-        var keywords = $("#keyword-search").val().trim();
+        keywords = $("#keyword-search").val().trim();
 
         // Create variable containing user min price
-        var minPrice = $("#minprice-search").val().trim();
+        minPrice = $("#minprice-search").val().trim();
 
-        // Create variable containing user max price
-        var maxPrice = $("#maxprice-search").val().trim(); 
+        if (minPrice <= 0) {
+            minPrice = 0;
+        }
         
+        // Create variable containing user max price
+        maxPrice = $("#maxprice-search").val().trim(); 
+        
+        if (maxPrice <= 0) {
+            maxPrice = 1000000000;
+        }
+
         // Create variable for Etsy URL
         queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywords + "&min_price=" + minPrice + "&max_price=" + maxPrice + "&includes=MainImage";
         
         // Create eBay queryURL for API requests
         queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywords + "&itemFilter.name=MinPrice&itemFilter.value=" + minPrice + "&itemFilter.name=MaxPrice&itemFilter.value=" + maxPrice + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD";
-        // &paginationInput.entriesPerPage=10";
-        
+                
         // ETSY API REQUEST & DISPLAY =========================================
         
         // Create AJAX Etsy request based on user submission
@@ -66,11 +80,14 @@ $(document).ready(function () {
                 // Add displayText to displayURL
                 displayURL.append(displayText);
 
+                // Add commas to price
+                var displayPriceString = parseFloat(price).toLocaleString('en');
+
                 // Add $ to price
-                var displayPrice = "$" + price;
+                displayPriceString = "$" + displayPriceString;
 
                 // Append image, URL, text, price to itemDiv
-                itemDiv.append(itemImage).append(displayURL).append(displayPrice);              
+                itemDiv.append(itemImage).append(displayURL).append(displayPriceString);              
             
                 // Append itemDiv to HTML
                 $("#columnone").append(itemDiv);                          
@@ -123,6 +140,9 @@ $(document).ready(function () {
                 var ebayPriceString = JSON.stringify(ebayItemPrice)
                 // Remove quotes around new string
                 ebayPriceString = ebayPriceString.replace(/^"(.*)"$/, '$1');
+                // Add commas to price string 
+                ebayPriceString = parseFloat(ebayPriceString).toLocaleString('en');
+
                 // Add $ to price
                 var ebayDisplayPrice = "$" + ebayPriceString;
                 
@@ -133,6 +153,11 @@ $(document).ready(function () {
                 $("#columntwo").append(ebayItemDiv);                          
             }             
         })
+
+        // Reset keyword, min price and max price values for next search
+        keywords = "";
+        minPrice = 0;
+        maxPrice = 1000000000;        
     });
 
     // Click function for favorites - when user clicks an item, it gets saved to shopping cart
