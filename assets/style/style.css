@@ -188,7 +188,7 @@ img {
     font-family: 'Lato';
 }
 
-/* Large Search Bar Right */
+/* Search Bar Right */
 
 .searchBarside {
     background-color:#20b88f;
@@ -212,6 +212,52 @@ img {
     float: right;
     margin: 12% 12% 0% 0%;
 }
+
+/* Search Form */
+
+#search-title {
+    font-size: 500%;
+    margin-top: 40%;
+    color: white;
+}
+
+#search-form {
+    margin-top: 15%;
+    background: #20b88f;
+    color: white;
+}
+
+.input-field label {
+    color: white;
+}
+
+.input-field input:focus + label {
+    color: white !important;
+}
+
+#keyword-search, #minprice-search, #maxprice-search {
+    color: white;
+    border-bottom: 1px solid white !important; 
+}
+
+#keyword-search:focus, #minprice-search:focus, #maxprice-search:focus {
+    border-bottom: 1px solid white !important;
+    -webkit-box-shadow: 0 1px 0 0 white;
+}
+
+#search-search {
+    margin-top: 15%;
+}
+
+/* #search-index {
+    font-family: 'Lato';
+    display: inline-block;
+    background-color: white;
+    color: #fc5e2e;
+    margin-top: 20px;
+} */
+
+
 
 /********* Shopping Cart *********/
 
