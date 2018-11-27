@@ -9,6 +9,7 @@
 #menu {
     background-color: #fc5e2e;
     height: 100%;
+    overflow: scroll;
 }
 
 @font-face {
@@ -69,6 +70,10 @@
     margin-top: 20px;
 }
 
+#search-index:hover {
+    opacity: .5;
+}
+
 
 @media screen and (max-width: 780px){
 
@@ -126,6 +131,5 @@
     #search-index {
         margin-left: 40%;
     }
-
 
 }
