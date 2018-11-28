@@ -293,7 +293,43 @@ $(document).ready(function () {
             maxPrice = 1000000000;
         };
     });
-});
+        // Clear previous search results from HTML
+        $("#columnone").empty();
+        $("#columntwo").empty();
+        
+        // Create variable containing user keywords
+        keywords = $("#keyword-index").val().trim();
 
-// Pseudocode for button to display more search results 
-    // Change for loops to go through 20 results, but only display 4 first
+        // Store user keywords in localStorage
+        localStorage.setItem("storage-keywords", keywords);
+      
+        window.location="search.html";
+    })
+      
+    // GLOBAL PROCESS==================================================
+    showlocalstorage();
+
+    // PROCESS TO START ON SEARCH PAGE LOAD==============================
+    if($("body").is("#search-pg")) {
+        console.log("Window location is working!");
+    
+        // Assign value from localStorage to keywordHome variable for API requests 
+        var keywordHome = localStorage.getItem("storage-keywords");
+        console.log("Local Storage keyword: " + keywordHome);
+    
+        // Create Etsy, eBay URLS
+        queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywordHome + "&includes=MainImage";
+        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywordHome + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD";    
+        
+        console.log(queryEbayURL);
+        console.log(queryEtsyURL);
+        
+        // Do API requests, display in HTLM for Etsy, eBay
+        etsyAPI();
+        ebayAPI();
+    
+        // Reset keyword, min price and max price values for next search
+        keywords = "";
+        minPrice = 0;
+        maxPrice = 1000000000;
+    };
