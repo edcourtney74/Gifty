@@ -71,7 +71,7 @@ $(document).ready(function () {
         queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywords + "&min_price=" + minPrice + "&max_price=" + maxPrice + "&includes=MainImage";
 
         // Create eBay queryURL for API requests
-        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywords + "&itemFilter.name=MinPrice&itemFilter.value=" + minPrice + "&itemFilter.name=MaxPrice&itemFilter.value=" + maxPrice + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD";
+        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywords + "&itemFilter.name=MinPrice&itemFilter.value=" + minPrice + "&itemFilter.name=MaxPrice&itemFilter.value=" + maxPrice + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector=PictureURLSuperSize";
     }
 
     // Function for Etsy for loop that passes in new iterator number to ask for 
@@ -127,7 +127,7 @@ $(document).ready(function () {
         // Create variables needed                        
         var ebayTitle = ebayResponseObj[x].title;
         var ebayItemURL = ebayResponseObj[x].viewItemURL;
-        var ebayImage = ebayResponseObj[x].galleryURL;
+        var ebayImage = ebayResponseObj[x].pictureURLSuperSize;
         var ebayItemPrice = ebayResponseObj[x].sellingStatus[0].convertedCurrentPrice[0]["__value__"];
 
         // Create overall div to display in HTML and can be clicked to add to shopping cart
@@ -275,7 +275,7 @@ $(document).ready(function () {
 
             // Create Etsy, eBay URLS
             queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywordHome + "&includes=MainImage";
-            queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywordHome + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD";
+            queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywordHome + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector=PictureURLSuperSize";
 
             console.log(queryEbayURL);
             console.log(queryEtsyURL);
@@ -305,31 +305,3 @@ $(document).ready(function () {
       
         window.location="search.html";
     })
-      
-    // GLOBAL PROCESS==================================================
-    showlocalstorage();
-
-    // PROCESS TO START ON SEARCH PAGE LOAD==============================
-    if($("body").is("#search-pg")) {
-        console.log("Window location is working!");
-    
-        // Assign value from localStorage to keywordHome variable for API requests 
-        var keywordHome = localStorage.getItem("storage-keywords");
-        console.log("Local Storage keyword: " + keywordHome);
-    
-        // Create Etsy, eBay URLS
-        queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywordHome + "&includes=MainImage";
-        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywordHome + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD";    
-        
-        console.log(queryEbayURL);
-        console.log(queryEtsyURL);
-        
-        // Do API requests, display in HTLM for Etsy, eBay
-        etsyAPI();
-        ebayAPI();
-    
-        // Reset keyword, min price and max price values for next search
-        keywords = "";
-        minPrice = 0;
-        maxPrice = 1000000000;
-    };
