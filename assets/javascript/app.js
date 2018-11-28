@@ -8,8 +8,16 @@ var minPrice = 0;
 // Variable containing user max price, set to 1,000,000 in case user doesn't specify
 var maxPrice = 1000000000;
 
+
+
+function showlocalstorage() {
+    for (let i = 0; i < 4; i++) {
+        $("#recentlyviewed").append(localStorage.getItem("title" + "description" + "itemURL" + "image" + i));
+    }
+};
 // FUNCTIONS
 $(document).ready(function () {
+    showlocalstorage();
 
     // CLICK FUNCTIONS
     // Retrieve values from search on search.html
@@ -57,6 +65,8 @@ $(document).ready(function () {
             url: queryEtsyURL,
             method: "GET"
         }).then(function (resEtsy) {
+            console.log(resEtsy);
+
             // For loop to:  
             for (let i = 0; i < 4; i++) {
                 // Create variables needed
@@ -65,6 +75,9 @@ $(document).ready(function () {
                 var itemURL = resEtsy.results[i].url;
                 var image = resEtsy.results[i].MainImage.url_fullxfull;
                 var price = resEtsy.results[i].price;
+              
+                console.log("Image URL: " + image);
+                console.log("-----------------------------");
 
                 // Create overall div to display in HTML and can be clicked to add to shopping cart
                 var itemDiv = $("<div>")
@@ -86,6 +99,13 @@ $(document).ready(function () {
 
                 // Add displayText to displayURL
                 displayURL.append(displayText);
+
+                // Append image, url & text to HTML - NEEDS UPDATED WITH NEW ID
+                $(".results").append(itemImage).append(displayURL);
+
+                localStorage.clear();
+
+                localStorage.setItem("title" + "description" + "itemURL" + "image" + i, title);
 
                 // Add commas to price
                 var displayPriceString = parseFloat(price).toLocaleString('en');
@@ -164,10 +184,13 @@ $(document).ready(function () {
 
                 // Display More button
                 $(".btn-more").css("display", "inline-block");
-
             }
         })
 
+    })
+
+    // Create eBay queryURL for API requests
+    // Create AJAX eBay request based on user submission
         // Reset keyword, min price and max price values for next search
         keywords = "";
         minPrice = 0;
