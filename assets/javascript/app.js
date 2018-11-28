@@ -185,8 +185,22 @@ $(document).ready(function () {
             // Add $ to price
             var ebayDisplayPrice = "$" + ebayPriceString;
 
+            // Create <p> element
+            var p = $("<p>");
+
+            // Add Favorite button
+            var favoriteButton = $("<button>");
+
+            favoriteButton.addClass("fav-btn");
+
+            // Add HTML info to button
+            favoriteButton.html("<a class='waves-effect waves-light btn'>Favorite</a>");
+
+            // Add image, title, URL and price attributes to button to retrieve later
+            favoriteButton.attr("cart-image", ebayImage).attr("cart-URL", ebayItemURL).attr("cart-title", ebayTitle).attr("cart-price", ebayItemPrice)
+
             // Append image, URL, text, price to itemDiv
-            ebayItemDiv.append(ebayItemImage).append(ebayDisplayURL).append(ebayDisplayPrice);
+            ebayItemDiv.append(ebayItemImage).append(ebayDisplayURL).append(ebayDisplayPrice).append(favoriteButton);
 
             // Append itemDiv to HTML
             $("#columntwo").append(ebayItemDiv);
@@ -327,22 +341,20 @@ $(document).ready(function () {
         minPrice = 0;
         maxPrice = 1000000000;
     };
-    
+
     // PROCESS TO START ON CART PAGE LOAD========================================
     if ($("body").is("#cart-pg")) {
 
         // Assign value from localStorage to favorite titles variable to display in cart 
         // Convert string to object array
         var favoritedImagesArray = JSON.parse(localStorage.getItem("favoritedImages"));
-        console.log("Favorited Images Array:" + favoritedImagesArray);
         var favoritedTitlesArray = JSON.parse(localStorage.getItem("favoritedTitles"));
-        console.log("Favorited Images Array:" + favoritedImagesArray);
         var favoritedURLsArray = JSON.parse(localStorage.getItem("favoritedURLs"));
         var favoritedPricesArray = JSON.parse(localStorage.getItem("favoritedPrices"));
-        
+
         // For Loop to go through favorites arrays and display in HTML    
         for (z = 0; z < favoritedTitlesArray.length; z++) {
-            
+
             // Create variable for image to display in table
             var favoritedImageDisplay = $("<img>");
             // Add src attribute from favoritedImagesArray
@@ -361,7 +373,7 @@ $(document).ready(function () {
 
             // Append new row to the table
             $("#cart-list").append(newRow);
-            
+
         }
 
     }
