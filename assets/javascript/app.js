@@ -83,7 +83,7 @@ $(document).ready(function () {
         queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywords + "&min_price=" + minPrice + "&max_price=" + maxPrice + "&includes=MainImage";
 
         // Create eBay queryURL for API requests
-        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywords + "&itemFilter.name=MinPrice&itemFilter.value=" + minPrice + "&itemFilter.name=MaxPrice&itemFilter.value=" + maxPrice + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector=PictureURLSuperSize";
+        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywords + "&itemFilter(0).name=MinPrice&itemFilter(0).value=" + minPrice + "&itemFilter(1).name=MaxPrice&itemFilter(1).value=" + maxPrice + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector=PictureURLSuperSize";
     }
 
     // Function for Etsy for loop that passes in new iterator number to ask for 
@@ -143,7 +143,7 @@ $(document).ready(function () {
         }
     }
 
-    // Function for Etsy for loop that passes in new iterator number to ask for 
+    // Function for eBay for loop that passes in new iterator number to ask for 
     // four more items  
     function ebayForLoop(ebayIterator) {
         for (let x = ebayIterator; x < (ebayIterator + 4); x++) {
