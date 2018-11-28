@@ -216,7 +216,6 @@ $(document).ready(function () {
         }).then(function (resEtsy) {
             etsyResponseObj = resEtsy;
             etsyForLoop(0);
-            etsyIterator += 4
         });
     }
 
@@ -232,7 +231,6 @@ $(document).ready(function () {
             // Variable for itemArray to run the for loop for
             ebayResponseObj = ebayobj.findItemsByKeywordsResponse[0].searchResult[0].item;
             ebayForLoop(0);
-            ebayIterator += 4
         })
     }
 
@@ -287,6 +285,11 @@ $(document).ready(function () {
         // event.preventDefault() prevents the form from trying to submit itself.
         event.preventDefault();
 
+        // Add four to etsyIterator and ebayIterator to return next four items
+        etsyIterator += 4;
+        ebayIterator += 4;
+        console.log("Etsy iterator: " + etsyIterator);
+        
         // Run Etsy For Loop
         etsyForLoop(etsyIterator);
         ebayForLoop(etsyIterator);
