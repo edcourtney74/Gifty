@@ -342,14 +342,20 @@ img {
     #height-control {
         width: 100%;
     }
+
     .search-tagline {
         font-size: 30px;
     }
 
     /* Right Side of Page */
 
-    .right {
+    .searchBarside {
         display: none;
+    }
+
+    .right-responsive {
+        position: fixed;
+        z-index: 10;
     }
 }
 
