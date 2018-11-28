@@ -261,8 +261,6 @@ img {
     margin: 15% 0% 15% 0%;
 }
 
-
-
 /********* Shopping Cart *********/
 
 /* Header */
@@ -277,6 +275,11 @@ nav {
     font-size: 50px;
     margin-top: 15px;
     margin-bottom: 10px;
+}
+
+#back-to-search {
+    font-family: 'Lato';
+    margin-right: 10%;
 }
 
 /* Item List */
@@ -298,6 +301,10 @@ nav {
 
     .nav-row {
         margin-bottom: 0px;
+    }
+
+    #back-to-search {
+        margin: 0;
     }
 }
 
