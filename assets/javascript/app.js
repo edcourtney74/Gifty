@@ -222,11 +222,12 @@ $(document).ready(function () {
         localStorage.setItem("storage-keywords", keywords);
       
         window.location="search.html";
+    })
       
-    // GLOBAL PROCESS
+    // GLOBAL PROCESS==================================================
     showlocalstorage();
 
-    // PROCESS TO START ON SEARCH PAGE LOAD
+    // PROCESS TO START ON SEARCH PAGE LOAD==============================
     if($("body").is("#search-pg")) {
         console.log("Window location is working!");
     
@@ -244,14 +245,14 @@ $(document).ready(function () {
         // Do API requests, display in HTLM for Etsy, eBay
         etsyAPI();
         ebayAPI();
-    };
-
+    
         // Reset keyword, min price and max price values for next search
         keywords = "";
         minPrice = 0;
         maxPrice = 1000000000;
+    };
+});
 });
 
 // Pseudocode for button to display more search results 
     // Change for loops to go through 20 results, but only display 4 first
-    // 
