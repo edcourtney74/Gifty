@@ -203,9 +203,6 @@ $(document).ready(function () {
         })
     }
 
-    // MAIN PROCESS===================================================================
-    $(document).ready(function () {
-
         // CLICK FUNCTIONS
         // Retrieve values from search on search.html
         $("#search-search").on("click", function (event) {
@@ -293,15 +290,3 @@ $(document).ready(function () {
             maxPrice = 1000000000;
         };
     });
-        // Clear previous search results from HTML
-        $("#columnone").empty();
-        $("#columntwo").empty();
-        
-        // Create variable containing user keywords
-        keywords = $("#keyword-index").val().trim();
-
-        // Store user keywords in localStorage
-        localStorage.setItem("storage-keywords", keywords);
-      
-        window.location="search.html";
-    })
