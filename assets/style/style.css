@@ -188,6 +188,15 @@ img {
     font-family: 'Lato';
 }
 
+.search-tagline {
+    font-size: 45px;
+    margin: 2%;
+}
+
+#product-matrix {
+    overflow: scroll;
+}
+
 /* Search Bar Right */
 
 .searchBarside {
@@ -196,6 +205,7 @@ img {
     height: 100%;
     padding: 20px;
     text-align: center;
+    overflow: scroll;
 }
     
 #gifty {
@@ -246,16 +256,10 @@ img {
 }
 
 #search-search {
-    margin-top: 15%;
-}
-
-/* #search-index {
-    font-family: 'Lato';
-    display: inline-block;
     background-color: white;
-    color: #fc5e2e;
-    margin-top: 20px;
-} */
+    color: #20b88f;
+    margin: 15% 0% 15% 0%;
+}
 
 
 

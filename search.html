@@ -38,14 +38,28 @@
             <div class="col m8 offset+s6 top">
 
                 <!-- Tagline -->
-                <span class="flow-text">Your Curated Search...</span>
+                <p class="search-tagline">Your Curated Search...</p>
 
-                <!-- Product Columns -->
                 <div class="row">
 
-                    <div id="columnone" class="col s3 test-border">xxxxxxxx</div>
-                    <div id="columntwo" class="col s3 test-border">xxxxxxxxx</div>
-                    <div id="columnthree" class="col s3 test-border">xxxxxxx</div>
+                    <!-- Whitespace -->
+                    <div class="col m1"></div>
+
+                    <!-- Product Matrix -->
+                    <div class="col m10" id="product-matrix">
+
+                        <!-- Product Columns -->
+                        <div class="row">
+
+                            <div class="col m6" id="columnone" style="border: solid 1px red">xxxxxxx</div>
+                            <div class="col m6" id="columntwo" style="border: solid 1px red">xxxxxxx</div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Whitespace -->
+                    <div class="col m1"></div>
 
                 </div>
 
@@ -81,7 +95,7 @@
                         <label for="maxprice-search">Maximum Price</label>
                     </div>
 
-                    <button id="search-search" class="btn waves-effect waves-light" type="submit" name="action">Search</button>
+                    <button id="search-search" class="btn waves-effect waves-teal" type="submit" name="action">Search</button>
 
                 </form>
 
