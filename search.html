@@ -1,86 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html id="search-pg">
 
 <head>
+
+    <!-- Meta Data -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Page Title -->
     <title>Gifty | Search</title>
+
+    <!-- Viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <!-- Materialze-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!-- External Stylesheet -->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/style/style.css" />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
+    <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
-<body>
 
-<div class="container">
-    <!-- Body of page is in one row -->
-    <div class="row">
-        <!-- Column for all search results -->
-        <div class="col s8 offset+s6 top"><span class="flow-text">Your Curated Search...</span>
-            <!-- Row to divide search results area into three columns -->
-            <div class="row">
-                <div id="columnone" class="col s3 test-border"></div>
-                <div id="columntwo" class="col s3 test-border"></div>
-                <div id="columnthree" class="col s3 test-border"></div>
-            </div>
-        </div>
-        <!-- Column for search bar -->
-        <div class="col s4 searchBarside">
-                <div id="gifty" class="col s6">Gifty</div>
-                <div class="col s6"><img src="assets/Style Guide/Icons/shopping-cart.png" alt="shopping-cart" style="width:20px"></div>
-                <br>
-                <div class="col s6">
-            <span class="flow-text">Search</span>
+<body id="search-pg">
+
+    <!-- Page Container -->
+    <div class="container" id="search-pg">
+
+        <div class="row" id="search-pg">
+
+            <!-- Left -->
+            <div class="col m8 offset+s6 top">
+
+                <!-- Tagline -->
+                <p class="search-tagline">Your Curated Search...</p>
+
+                <div class="row">
+
+                    <!-- Whitespace -->
+                    <div class="col m1"></div>
+
+                    <!-- Product Matrix -->
+                    <div class="col m10" id="product-matrix">
+
+                        <!-- Product Columns -->
+                        <div class="row">
+
+                            <div class="col m6" id="columnone" style="border: solid 1px red">xxxxxxx</div>
+                            <div class="col m6" id="columntwo" style="border: solid 1px red">xxxxxxx</div>
+                          
+                        </div>
+
+                    </div>
+
+                    <!-- Whitespace -->
+                    <div class="col m1"></div>
+
                 </div>
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="keyword-search" class="materialize-textarea"></textarea>
-                            <label for="keyword-search">Keyword</label>
-                        </div>
-                    </div>
-                </form>
+
             </div>
-            <div class="row">
-                <form class="col s6">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <textarea id="minprice-search" class="materialize-textarea"></textarea>
-                            <label for="minprice-search">Minimum Price</label>
-                        </div>
+
+            <!-- Right -->
+            <div class="col m4 searchBarside">
+
+                <!-- Home Button -->
+                <a href="index.html">
+                    <h1 id="gifty">Gifty</h1>
+                </a>
+
+                <!-- Shopping Cart Button-->
+                <a href="cart.html">
+                    <img id="cart-icon" src="assets/Style Guide/Icons/shopping-cart.png" alt="shopping-cart">
+                </a>
+
+                <!-- Form Title -->
+                <h1 id="search-title">Search</h1>
+
+                <!-- Search Form -->
+                <form id="search-form">
+
+                    <div class="input-field col m12">
+                        <input id="keyword-search" type="text">
+                        <label for="keyword-search">Keyword</label>
                     </div>
+
+                    <div class="input-field col m6">
+                        <input id="minprice-search" type="text">
+                        <label for="minprice-search">Minimum Price</label>
+                    </div>
+
+                    <div class="input-field col m6">
+                        <input id="maxprice-search" type="text">
+                        <label for="maxprice-search">Maximum Price</label>
+                    </div>
+
+                    <button id="search-search" class="btn waves-effect waves-teal" type="submit" name="action">Search</button>
+
                 </form>
-                <form class="col s6">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <textarea id="maxprice-search" class="materialize-textarea"></textarea>
-                            <label for="maxprice-search">Maximum Price</label>
-                        </div>
-                    </div>
-                </form>
+
             </div>
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <textarea id="textarea1" class="materialize-textarea"></textarea>
-                            <label for="textarea1">Textarea</label>
-                        </div>
-                    </div>
-            </div>
-            <button id="search-search" class="btn waves-effect waves-light" type="submit" name="action">Submit
-                <i class="material-icons right"></i>
-            </button>
-            </form>
+
         </div>
+
     </div>
-</div>
 
     <!-- Javascript links-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="http://code.jquery.com/jquery-3.3.1.js"></script>
     <script src="assets/javascript/app.js"></script>
 
 </body>
