@@ -19,6 +19,10 @@ $(document).ready(function () {
 
         // VARIABLES FOR API REQUESTS=======================================
 
+        // Empty current search results displayed
+        $("#columnone").empty();
+        $("#columntwo").empty();        
+        
         // Create variable containing user keywords
         keywords = $("#keyword-search").val().trim();
 
@@ -94,6 +98,9 @@ $(document).ready(function () {
 
                 // Append itemDiv to HTML
                 $("#columnone").append(itemDiv);
+                
+                // Display more button
+                $(".btn-more").css("display", "inline-block");
             }
         });
 
@@ -154,6 +161,10 @@ $(document).ready(function () {
 
                 // Append itemDiv to HTML
                 $("#columntwo").append(ebayItemDiv);
+
+                // Display More button
+                $(".btn-more").css("display", "inline-block");
+
             }
         })
 
@@ -182,7 +193,13 @@ $(document).ready(function () {
     // Assign value from localStorage to keywordHome variable for API requests 
     var keywordHome = localStorage.getItem("storage-keywords");    
     console.log("Local Storage keyword: " + keywordHome);
-
+        
+    // Check to see if there is a value in localStorage storage-keywords
+    if (keywordHome) {   
+        // If value exists:
+        // Clear localStorage "storage-keywords"
+        localStorage.setItem("storage-keywords", "");
+    
         // Create variable for Etsy URL
         queryEtsyURLHome = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywordHome + "&includes=MainImage";
 
@@ -304,5 +321,9 @@ $(document).ready(function () {
         keywords = "";
         minPrice = 0;
         maxPrice = 1000000000;
-    });
+    }
+});
 
+// Pseudocode for button to display more search results 
+    // Change for loops to go through 20 results, but only display 4 first
+    // 
