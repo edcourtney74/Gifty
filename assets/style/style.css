@@ -179,20 +179,91 @@ img {
 
 /********* Search Page *********/
 
-/* Large Search Bar Right */
+/* Whole Page */
+
+#search-pg {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-family: 'Lato';
+}
+
+.search-tagline {
+    font-size: 45px;
+    margin: 2%;
+}
+
+#product-matrix {
+    overflow: scroll;
+}
+
+/* Search Bar Right */
+
+.btn-more {
+    display: none;
+}
 
 .searchBarside {
-    background-color: rgb(1, 105, 131);
-    color: antiquewhite;
-    text-align: center;
+    background-color:#20b88f;
+    width: 100%;
+    height: 100%;
     padding: 20px;
-    border: 24px;
+    text-align: center;
+    overflow: scroll;
 }
     
 #gifty {
     font-family: 'Hensa';
-    font-size: 35px;    
-}    
+    color: white;
+    font-size: 35px;
+    float: left;
+    padding: 0% 0% 0% 10%; 
+}
+
+#cart-icon {
+    width: 40px;
+    height: 40px;
+    float: right;
+    margin: 12% 12% 0% 0%;
+}
+
+/* Search Form */
+
+#search-title {
+    font-size: 500%;
+    margin-top: 40%;
+    color: white;
+}
+
+#search-form {
+    margin-top: 15%;
+    background: #20b88f;
+    color: white;
+}
+
+.input-field label {
+    color: white;
+}
+
+.input-field input:focus + label {
+    color: white !important;
+}
+
+#keyword-search, #minprice-search, #maxprice-search {
+    color: white;
+    border-bottom: 1px solid white !important; 
+}
+
+#keyword-search:focus, #minprice-search:focus, #maxprice-search:focus {
+    border-bottom: 1px solid white !important;
+    -webkit-box-shadow: 0 1px 0 0 white;
+}
+
+#search-search {
+    background-color: white;
+    color: #20b88f;
+    margin: 15% 0% 15% 0%;
+}
 
 /********* Shopping Cart *********/
 
@@ -208,6 +279,11 @@ nav {
     font-size: 50px;
     margin-top: 15px;
     margin-bottom: 10px;
+}
+
+#back-to-search {
+    font-family: 'Lato';
+    margin-right: 10%;
 }
 
 /* Item List */
@@ -229,6 +305,10 @@ nav {
 
     .nav-row {
         margin-bottom: 0px;
+    }
+
+    #back-to-search {
+        margin: 0;
     }
 }
 
