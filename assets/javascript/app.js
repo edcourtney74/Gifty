@@ -1,12 +1,21 @@
 // GLOBAL VARIABLES
 
+
+
+function showlocalstorage() {
+    for (let i = 0; i < 4; i++) {
+        $("#recentlyviewed").append(localStorage.getItem("title" + "description" + "itemURL" + "image" + i));
+    }
+};
 // FUNCTIONS
 $(document).ready(function () {
 
+    showlocalstorage();
 
-// CLICK FUNCTIONS
+
+    // CLICK FUNCTIONS
     // Retrieve values from search on search.html
-    $("#search-search").on("click", function(event) {
+    $("#search-search").on("click", function (event) {
         // event.preventDefault() prevents the form from trying to submit itself.
         event.preventDefault();
 
@@ -17,7 +26,7 @@ $(document).ready(function () {
         var minPrice = $("#minprice-search").val().trim();
 
         // Create variable containing user max price
-        var maxPrice = $("#maxprice-search").val().trim(); 
+        var maxPrice = $("#maxprice-search").val().trim();
 
         // Create Etsy queryURL for API requests
         queryURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywords + "&min_price=" + minPrice + "&max_price=" + maxPrice + "&includes=MainImage";
@@ -26,9 +35,9 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function(resEtsy) {
+        }).then(function (resEtsy) {
             console.log(resEtsy);
-            
+
             // For loop to:  
             for (let i = 0; i < 4; i++) {
                 // Create variables needed
@@ -41,7 +50,8 @@ $(document).ready(function () {
                 var image = resEtsy.results[i].MainImage.url_fullxfull;
                 console.log("Image URL: " + image);
                 console.log("-----------------------------");
-                
+
+
                 // Create itemImage to display in HTML
                 var itemImage = $("<img>");
 
@@ -50,7 +60,7 @@ $(document).ready(function () {
 
                 // Creat URL to display in HTML
                 var displayURL = $("<a>").attr("href", itemURL).attr("target", "_blank");
-                
+
                 // Create text to display in HTML
                 var displayText = $("<h5>").text(title);
 
@@ -58,14 +68,21 @@ $(document).ready(function () {
                 displayURL.append(displayText);
 
                 // Append image, url & text to HTML - NEEDS UPDATED WITH NEW ID
-                $(".results").append(itemImage).append(displayURL);                          
-            }        
-            })
-        
+                $(".results").append(itemImage).append(displayURL);
+
+                localStorage.clear();
+
+                localStorage.setItem("title" + "description" + "itemURL" + "image" + i, title);
+
+
+
+            }
+        })
+
     })
 
-        // Create eBay queryURL for API requests
-        // Create AJAX eBay request based on user submission
+    // Create eBay queryURL for API requests
+    // Create AJAX eBay request based on user submission
 
 
 });
