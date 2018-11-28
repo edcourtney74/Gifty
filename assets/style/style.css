@@ -181,6 +181,10 @@ img {
 
 /* Large Search Bar Right */
 
+.btn-more {
+    display: none;
+}
+
 .searchBarside {
     background-color: rgb(1, 105, 131);
     color: antiquewhite;
