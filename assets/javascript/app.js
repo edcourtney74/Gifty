@@ -200,7 +200,7 @@ $(document).ready(function () {
             favoriteButton.attr("cart-image", ebayImage).attr("cart-URL", ebayItemURL).attr("cart-title", ebayTitle).attr("cart-price", ebayItemPrice)
 
             // Append image, URL, text, price to itemDiv
-            ebayItemDiv.append(ebayItemImage).append(ebayDisplayURL).append(ebayDisplayPrice).append(favoriteButton);
+            ebayItemDiv.append(ebayItemImage).append(ebayDisplayURL).append(ebayDisplayPrice).append(p).append(favoriteButton);
 
             // Append itemDiv to HTML
             $("#columntwo").append(ebayItemDiv);
