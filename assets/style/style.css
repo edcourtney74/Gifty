@@ -199,6 +199,10 @@ img {
 
 /* Search Bar Right */
 
+.btn-more {
+    display: none;
+}
+
 .searchBarside {
     background-color:#20b88f;
     width: 100%;
