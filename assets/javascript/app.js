@@ -17,13 +17,25 @@ var queryEtsyURL = "";
 // Variable containing query URL for eBay from search page parameters
 var queryEbayURL = "";
 
-// Variable to decide whether to send API requests on page load 
+// FUNCTIONS
+$(document).ready(function () {
 
 // GLOBAL FUNCTIONS===============================================================
+// Function to show localStorage 
+  function showlocalstorage() {
+    for (let i = 0; i < 4; i++) {
+        $("#recentlyviewed").append(localStorage.getItem("title" + "description" + "itemURL" + "image" + i));
+    }
+};
+  
 // Function to retrieve user parameters from search.html
 function getParametersSearch() {
+        // Empty current search results displayed
+        $("#columnone").empty();
+        $("#columntwo").empty();        
+        
     // Create variable containing user keywords
-    keywords = $("#keyword-search").val().trim();
+        keywords = $("#keyword-search").val().trim();
 
     // Create variable containing user min price
     minPrice = $("#minprice-search").val().trim();
@@ -188,7 +200,7 @@ $(document).ready(function () {
         // Send Ebay API request, display at search.html
         ebayAPI();
 
-        // Reset keyword, min price and max price values for next search
+       // Reset keyword, min price and max price values for next search
         keywords = "";
         minPrice = 0;
         maxPrice = 1000000000;
@@ -208,10 +220,11 @@ $(document).ready(function () {
 
         // Store user keywords in localStorage
         localStorage.setItem("storage-keywords", keywords);
-
-        window.location = "search.html";
-
-    });
+      
+        window.location="search.html";
+      
+    // GLOBAL PROCESS
+    showlocalstorage();
 
     // PROCESS TO START ON SEARCH PAGE LOAD
     if($("body").is("#search-pg")) {
@@ -239,3 +252,6 @@ $(document).ready(function () {
         maxPrice = 1000000000;
 });
 
+// Pseudocode for button to display more search results 
+    // Change for loops to go through 20 results, but only display 4 first
+    // 
