@@ -93,7 +93,6 @@ img {
 /* Media Queries */
 
 /* 780px - Tablet */
-
 @media screen and (max-width: 780px) {
 
     /* Right Side of Page */
@@ -123,7 +122,6 @@ img {
 }
 
 /* 600px - Phone */
-
 @media screen and (max-width: 600px) {
 
     /* Left Side of Page */
@@ -188,19 +186,48 @@ img {
     font-family: 'Lato';
 }
 
+/* Left Side of Page */
+
 .search-tagline {
     font-size: 45px;
-    margin: 2%;
+    margin: 0% 2% 2% 2%;
+    padding-top: 2%;
+}
+
+#height-control {
+    height: 100%;
+    margin: 0;
 }
 
 #product-matrix {
+    height: 73%;
     overflow: scroll;
+    text-align: center;
+}
+
+/* Prodcuts */
+
+h5 {
+    font-family: 'Lato';
+    color: #20b88f;
+    font-size: 15px;
+    margin: 0;
+    text-align: left;
+}
+
+.display-item {
+    margin: 10%;
+}
+
+img {
+    margin-bottom: 10px;
 }
 
 /* Search Bar Right */
 
 .btn-more {
     display: none;
+    background-color:#20b88f;
 }
 
 .searchBarside {
@@ -237,7 +264,6 @@ img {
 
 #search-form {
     margin-top: 15%;
-    background: #20b88f;
     color: white;
 }
 
@@ -264,6 +290,69 @@ img {
     color: #20b88f;
     margin: 15% 0% 15% 0%;
 }
+
+/* Media Queries */
+
+/* 860px - Tablet */
+@media screen and (max-width: 860px){
+
+    /* Search Form */
+
+    #search-title {
+        font-size: 400%;
+    }
+
+    .input-field label {
+        font-size: 90%;
+    }
+
+}
+
+/* 780px - Tablet */
+@media screen and (max-width: 780px) {
+    
+    /* Search Form */
+
+    #gifty {
+        font-size: 27px;
+        /* padding: 0% 0% 0% 10%;  */
+    }
+    
+    #cart-icon {
+        width: 27px;
+        height: 27px;
+        margin: 15% 12% 0% 0%;
+    }
+
+    #input-search-responsive {
+        width: 100%;
+    }
+
+    .input-field label {
+        margin: 0;
+    }
+
+}
+
+/* 600px - Phone */
+@media screen and (max-width: 600px){
+
+    /* Left Side of Page */
+
+    #height-control {
+        width: 100%;
+    }
+    .search-tagline {
+        font-size: 30px;
+    }
+
+    /* Right Side of Page */
+
+    .right {
+        display: none;
+    }
+}
+
 
 /********* Shopping Cart *********/
 
