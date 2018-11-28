@@ -345,6 +345,12 @@ img {
     .search-tagline {
         font-size: 30px;
     }
+
+    /* Right Side of Page */
+
+    .right {
+        display: none;
+    }
 }
 
 
