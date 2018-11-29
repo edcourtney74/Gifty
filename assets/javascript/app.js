@@ -98,7 +98,7 @@ $(document).ready(function () {
         queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywords + "&min_price=" + minPrice + "&max_price=" + maxPrice + "&includes=MainImage";
 
         // Create eBay queryURL for API requests
-        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywords + "&itemFilter(0).name=MinPrice&itemFilter(0).value=" + minPrice + "&itemFilter(1).name=MaxPrice&itemFilter(1).value=" + maxPrice + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector=PictureURLSuperSize";
+        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywords + "&itemFilter(0).name=MinPrice&itemFilter(0).value=" + minPrice + "&itemFilter(1).name=MaxPrice&itemFilter(1).value=" + maxPrice + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector(0)=PictureURLSuperSize&outputSelector(1)=PictureURLLarge";
     
         // Create temporary object to store values in Firebase
         var userSearch = {
@@ -176,9 +176,19 @@ $(document).ready(function () {
             // Create variables needed                        
             var ebayTitle = ebayResponseObj[x].title;
             var ebayItemURL = ebayResponseObj[x].viewItemURL;
-            var ebayImage = ebayResponseObj[x].pictureURLSuperSize;
             var ebayItemPrice = ebayResponseObj[x].sellingStatus[0].convertedCurrentPrice[0]["__value__"];
+            var ebayImage;
 
+            // Check to see if pictureURLSuperSize is in API
+            // if not, check for pictureURLLarge, if not use galleryURL
+            if (ebayResponseObj[x].pictureURLSuperSize) {
+                ebayImage = ebayResponseObj[x].pictureURLSuperSize                
+            } else if (ebayResponseObj[x].pictureURLLarge) {
+                ebayImage = ebayResponseObj[x].pictureURLLarge
+            } else {
+                ebayImage = ebayResponseObj[x].galleryURL
+            };          
+            
             // Create overall div to display in HTML and can be clicked to add to shopping cart
             var ebayItemDiv = $("<div>")
 
