@@ -394,6 +394,12 @@ $(document).ready(function () {
         keywords = "";
         minPrice = 0;
         maxPrice = 1000000000;
+
+        // Put previous favorites back into favorites arrays
+        var favoritedImages = JSON.parse(localStorage.getItem("favoritedImages"));
+        var favoritedTitles = JSON.parse(localStorage.getItem("favoritedTitles"));
+        var favoritedURLs = JSON.parse(localStorage.getItem("favoritedURLs"));
+        var favoritedPrices = JSON.parse(localStorage.getItem("favoritedPrices"));
     };
 
     // PROCESS TO START ON CART PAGE LOAD========================================
