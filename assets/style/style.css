@@ -1,3 +1,9 @@
+/********* Whole Site *********/
+
+.container {
+    max-width: none;
+}
+
 /********* Landing Page *********/
 
 /* Whole Page */

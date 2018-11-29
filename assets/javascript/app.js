@@ -416,7 +416,7 @@ $(document).ready(function () {
             // Create variable for image to display in table
             var favoritedImageDisplay = $("<img>");
             // Add src attribute from favoritedImagesArray
-            favoritedImageDisplay.attr("src", favoritedImagesArray[z])
+            favoritedImageDisplay.attr("src", favoritedImagesArray[z]).addClass("cart-image")
 
             // Add image to link
             imageDisplayURL.append(favoritedImageDisplay);
