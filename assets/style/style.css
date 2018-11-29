@@ -315,6 +315,12 @@ h5 {
     margin: 15% 0% 15% 0%;
 }
 
+.sidenav {
+    background: #20b88f;
+    color: white;
+    font-family: 'Lato';
+}
+
 /* Media Queries */
 
 /* 860px - Tablet */
@@ -354,10 +360,15 @@ h5 {
 
     #input-search-responsive {
         width: 100%;
+        margin: 10px 0px 10px 0px; 
     }
 
     .input-field label {
         margin: 0;
+    }
+
+    #search-title, #search-form {
+        text-align: center;
     }
 
 }
@@ -374,7 +385,7 @@ h5 {
     .search-tagline {
         float: left;
         font-size: 30px;
-        display: inline-block;
+        margin-bottom: 10%;
     }
 
     #hamburger {
