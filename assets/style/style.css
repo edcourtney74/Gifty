@@ -185,6 +185,10 @@
 
 /* Whole Page */
 
+.sidenav {
+    display: none;
+}
+
 #search-pg {
     width: 100%;
     height: 100%;
@@ -309,6 +313,16 @@ h5 {
     -webkit-box-shadow: 0 1px 0 0 white;
 }
 
+#sidenav-keyword-search, #sidenav-minprice-search, #sidenav-maxprice-search {
+    color: white;
+    border-bottom: 1px solid white !important; 
+}
+
+#sidenav-keyword-search:focus, #sidenav-minprice-search:focus, #sidenav-maxprice-search:focus {
+    border-bottom: 1px solid white !important;
+    -webkit-box-shadow: 0 1px 0 0 white;
+}
+
 #search-search {
     background-color: white;
     color: #20b88f;
@@ -393,6 +407,10 @@ h5 {
         float: right;
         margin-top: 4%;
         color: #20b88f;
+    }
+
+    .sidenav {
+        display: block;
     }
 
     /* Right Side of Page */
