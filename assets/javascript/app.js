@@ -29,17 +29,23 @@ var ebayResponseObj;
 // Variable for eBay iterator
 var ebayIterator = 0;
 
-// Array for favorited titles
+// Array for favorited images
 var favoritedImages = [];
 
 // Array for favorited titles
 var favoritedTitles = [];
 
-// Array for favorited titles
+// Array for favorited URLs
 var favoritedURLs = [];
 
-// Array for favorited titles
+// Array for favorited Prices
 var favoritedPrices = [];
+
+// Variable for whether the user cleared the wish list, set to localStorage
+var clearList;
+
+// Variable for whether the user has favorited items
+var favoritedItems;
 
 // FUNCTIONS
 $(document).ready(function () {
@@ -76,53 +82,59 @@ $(document).ready(function () {
         // Create variable containing user keywords
         keywords = $("#keyword-search").val().trim();
 
+        // Add keyword to localStorage
+        localStorage.setItem("storage-keywords", keywords);
+        
         // Create variable containing user min price
         minPrice = $("#minprice-search").val().trim();
-
+        
         // Check if minPrice value was entered by user,
         // if not, enter 0
         if (minPrice <= 0) {
             minPrice = 0;
         }
-
+        
         // Create variable containing user max price
         maxPrice = $("#maxprice-search").val().trim();
-
+        
         // Check if maxPrice value was entered by user,
         // if not, enter 1 billion
         if (maxPrice <= 0) {
             maxPrice = 1000000000;
         }
-
+        
         // Create variable for Etsy URL
         queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywords + "&min_price=" + minPrice + "&max_price=" + maxPrice + "&includes=MainImage";
-
+        
         // Create eBay queryURL for API requests
         queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywords + "&itemFilter(0).name=MinPrice&itemFilter(0).value=" + minPrice + "&itemFilter(1).name=MaxPrice&itemFilter(1).value=" + maxPrice + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector(0)=PictureURLSuperSize&outputSelector(1)=PictureURLLarge";
-    
+        
         // Create temporary object to store values in Firebase
         var userSearch = {
-        keywords: keywords,
-        minPrice: minPrice,
-        maxPrice: maxPrice,
+            keywords: keywords,
+            minPrice: minPrice,
+            maxPrice: maxPrice,
         }
         
         // Store new object in Firebase
         database.ref("search-page").push(userSearch);
     }        
-
+    
     // Function to retrieve user parameters from search.html
     function getParametersSidenav() {
         // Empty current search results displayed
         $("#columnone").empty();
         $("#columntwo").empty();
-
+        
         // Create variable containing user keywords
         keywords = $("#sidenav-keyword-search").val().trim();
+        
+        // Add keyword to localStorage
+        localStorage.setItem("storage-keywords", keywords);
 
         // Create variable containing user min price
         minPrice = $("#sidenav-minprice-search").val().trim();
-
+        
         // Check if minPrice value was entered by user,
         // if not, enter 0
         if (minPrice <= 0) {
@@ -324,9 +336,15 @@ $(document).ready(function () {
         // event.preventDefault() prevents the form from trying to submit itself.
         event.preventDefault();
 
-        // Clear previous search results from HTML
-        $("#columnone").empty();
-        $("#columntwo").empty();
+        // Make sure loading icon is displayed
+        $(".loadingDiv").css("display", "inline-block");
+        
+        // Clear previous search results from HTML, hide coluns until API request is returned
+        $("#columnone").empty().css("display", "none");
+        $("#columntwo").empty().css("display", "none");
+
+        // Hide More button until API request is returned
+        $(".btn-more").css("display", "none");
 
         // Retrieve user search parameters
         getParametersSearch();
@@ -342,10 +360,16 @@ $(document).ready(function () {
     $("#sidenav-search-search").on("click", function (event) {
         // event.preventDefault() prevents the form from trying to submit itself.
         event.preventDefault();
-        console.log("Sidebar Working!")
-        // Clear previous search results from HTML
-        $("#columnone").empty();
-        $("#columntwo").empty();
+
+        // Make sure loading icon is displayed
+        $(".loadingDiv").css("display", "inline-block");
+        
+        // Clear previous search results from HTML, hide coluns until API request is returned
+        $("#columnone").empty().css("display", "none");
+        $("#columntwo").empty().css("display", "none");
+
+        // Hide More button until API request is returned
+        $(".btn-more").css("display", "none");
 
         // Retrieve user search parameters
         getParametersSidenav();
@@ -378,7 +402,8 @@ $(document).ready(function () {
         database.ref("home-page").push(userHomeSearch);
         
         // Store user keywords in localStorage
-        localStorage.setItem("storage-keywords", keywords);
+        localStorage.setItem("storage-keywords", keywords)
+        console.log(localStorage.setItem("storage-keywords", keywords));
 
         window.location = "search.html";
     })
@@ -416,64 +441,127 @@ $(document).ready(function () {
             URL: cartURL
             }
             
-        // Store new object in Firebase
-        database.ref("favorited").push(userFavorite);
+            // Store new object in Firebase
+            database.ref("favorited").push(userFavorite);
+            
+            // Push attributes into array
+            favoritedImages.push(cartImage);
+            favoritedTitles.push(cartTitle);
+            console.log("Items in titles array: " + favoritedTitles);
+            favoritedURLs.push(cartURL);
+            favoritedPrices.push(cartPrice);
+            
+            // Store user keywords in localStorage
+            localStorage.setItem("favoritedImages", JSON.stringify(favoritedImages));
+            localStorage.setItem("favoritedTitles", JSON.stringify(favoritedTitles));
+            console.log("Items in titles array: " + favoritedTitles);
+            localStorage.setItem("favoritedURLs", JSON.stringify(favoritedURLs));
+            localStorage.setItem("favoritedPrices", JSON.stringify(favoritedPrices));
 
-        // Push attributes into array
-        favoritedImages.push(cartImage);
-        favoritedTitles.push(cartTitle);
-        console.log("Items in titles array: " + favoritedTitles);
-        favoritedURLs.push(cartURL);
-        favoritedPrices.push(cartPrice);
-
-        // Store user keywords in localStorage
-        localStorage.setItem("favoritedImages", JSON.stringify(favoritedImages));
-        localStorage.setItem("favoritedTitles", JSON.stringify(favoritedTitles));
-        console.log("Items in titles array: " + favoritedTitles);
-        localStorage.setItem("favoritedURLs", JSON.stringify(favoritedURLs));
-        localStorage.setItem("favoritedPrices", JSON.stringify(favoritedPrices));
-    })
-
-    // GLOBAL PROCESS==================================================
-    showlocalstorage();
-
-    // PROCESS TO START ON SEARCH PAGE LOAD==============================
-    if ($("body").is("#search-pg")) {
+            // Change favoritedItems to true and put in localStorage
+            favoritedItems = "true";
+            localStorage.setItem("favoritedItems", favoritedItems);
+        })
         
-        // Hide column displays until API request is returned
-        $("#columnone").css("display", "none");       
-        $("#columntwo").css("display", "none");
-        $(".btn-more").css("display", "none");       
-       
-        // Assign value from localStorage to keywordHome variable for API requests 
-        var keywordHome = localStorage.getItem("storage-keywords");
+        // Clear Wishlist click function
+        $(document).on('click', '.btn-clear', function () {
+            // Activate/make clearList true
+            clearList = "true";
+            console.log("clearList value: " + clearList);
+            // Store clear list value in localStorage
+            localStorage.setItem("clearList", clearList)
 
-        // Create Etsy, eBay URLS
-        queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywordHome + "&includes=MainImage";
-        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywordHome + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector=PictureURLSuperSize";
+            // Empty table on wishlist page
+            $("#cart-list").empty();            
+            
+        });
+        
+        // GLOBAL PROCESS==================================================
+        showlocalstorage();
+        
+        // PROCESS TO START ON INITIAL HOME PAGE LOAD
+        if ($("body").is("#landing-pg")) {
+            
+            // Set clearList value to false and put in localStorage
+            clearList = "false";
+            localStorage.setItem("clearList", clearList)
 
-        // Do API requests, display in HTML for Etsy, eBay
-        etsyAPI();
-        ebayAPI();
+            // Set favoritedItems value to false and put in localStorage
+            favoritedItems = "false";
+            localStorage.setItem("favoritedItems", favoritedItems)
+        }
+        
+        // PROCESS TO START ON SEARCH PAGE LOAD==============================
+        if ($("body").is("#search-pg")) {
+            
+            // Make sure loading icon is displayed
+            $(".loadingDiv").css("display", "inline-block");
+            
+            // Hide column displays until API request is returned
+            $("#columnone").css("display", "none");       
+            $("#columntwo").css("display", "none");
+            $(".btn-more").css("display", "none");       
+            
+            // Assign value from localStorage to keywordHome variable for API requests 
+            var keywordPast = localStorage.getItem("storage-keywords");
+            
+            // Create Etsy, eBay URLS
+            queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywordPast + "&includes=MainImage";
+            queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywordPast + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector=PictureURLSuperSize";
+            
+            // Do API requests, display in HTML for Etsy, eBay
+            etsyAPI();
+            ebayAPI();
+            
+            // Reset keyword, min price and max price values for next search
+            keywords = "";
+            minPrice = 0;
+            maxPrice = 1000000000;        
+            
+            // Retrieve clearList variable from localStorage
+            clearList = localStorage.getItem("clearList");
+            console.log("clearList value: " + clearList);
 
-        // Display More button
-        $(".btn-more").css("display", "inline-block");
+            // Retrieve favoritedItems variable from localStorage
+            favoritedItems = localStorage.getItem("favoritedItems");
+            console.log("Items in favorite?" + favoritedItems);
 
-        // Reset keyword, min price and max price values for next search
-        keywords = "";
-        minPrice = 0;
-        maxPrice = 1000000000;
+            // Check to see if clear list is active/true. 
+            // If so...
+            if (clearList === "true") {
+                // Set favorite arrays back to empty and localStorage items 
+                // so the user can start rebuilding
+                console.log("Clear list true is running");
+                favoritedImages = [];
+                favoritedTitles = [];
+                favoritedURLs = [];
+                favoritedPrices = [];            
+            
+                localStorage.removeItem("favoritedImages");
+                localStorage.removeItem("favoritedTitles")
+                localStorage.removeItem("favoritedURLs")
+                localStorage.removeItem("favoritedPrices")
 
-        // Put previous favorites back into favorites arrays
-        var favoritedImages = JSON.parse(localStorage.getItem("favoritedImages"));
-        var favoritedTitles = JSON.parse(localStorage.getItem("favoritedTitles"));
-        var favoritedURLs = JSON.parse(localStorage.getItem("favoritedURLs"));
-        var favoritedPrices = JSON.parse(localStorage.getItem("favoritedPrices"));
-    };
+                // Reset clearList value back to false until Clear List is clicked again
+                clearList = "false";
+                localStorage.setItem("clearList", clearList);
+            
+            } else if ((clearList === "false") && (favoritedItems === "true")) {
+                // Put previous favorites back into favorites arrays because we still need them for the 
+                // array if the user goes back to wish list without clearing it
+                console.log("clearList value false and previous favorites is running");
+                favoritedImages = JSON.parse(localStorage.getItem("favoritedImages"));
+                favoritedTitles = JSON.parse(localStorage.getItem("favoritedTitles"));
+                favoritedURLs = JSON.parse(localStorage.getItem("favoritedURLs"));
+                favoritedPrices = JSON.parse(localStorage.getItem("favoritedPrices"));
+            } else {
+                console.log("Clear list false and favorited items false is running")
+            }
+        };
 
     // PROCESS TO START ON CART PAGE LOAD========================================
     if ($("body").is("#cart-pg")) {
-
+        
         // Assign value from localStorage to favorite titles variable to display in cart 
         // Convert string to object array
         var favoritedImagesArray = JSON.parse(localStorage.getItem("favoritedImages"));
