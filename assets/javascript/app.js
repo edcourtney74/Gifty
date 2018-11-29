@@ -106,7 +106,50 @@ $(document).ready(function () {
         minPrice: minPrice,
         maxPrice: maxPrice,
         }
-        console.log("User search object: " + userSearch);
+        
+        // Store new object in Firebase
+        database.ref("search-page").push(userSearch);
+    }        
+
+    // Function to retrieve user parameters from search.html
+    function getParametersSidenav() {
+        // Empty current search results displayed
+        $("#columnone").empty();
+        $("#columntwo").empty();
+
+        // Create variable containing user keywords
+        keywords = $("#sidenav-keyword-search").val().trim();
+
+        // Create variable containing user min price
+        minPrice = $("#sidenav-minprice-search").val().trim();
+
+        // Check if minPrice value was entered by user,
+        // if not, enter 0
+        if (minPrice <= 0) {
+            minPrice = 0;
+        }
+
+        // Create variable containing user max price
+        maxPrice = $("#sidenav-maxprice-search").val().trim();
+
+        // Check if maxPrice value was entered by user,
+        // if not, enter 1 billion
+        if (maxPrice <= 0) {
+            maxPrice = 1000000000;
+        }
+
+        // Create variable for Etsy URL
+        queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywords + "&min_price=" + minPrice + "&max_price=" + maxPrice + "&includes=MainImage";
+
+        // Create eBay queryURL for API requests
+        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywords + "&itemFilter(0).name=MinPrice&itemFilter(0).value=" + minPrice + "&itemFilter(1).name=MaxPrice&itemFilter(1).value=" + maxPrice + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector(0)=PictureURLSuperSize&outputSelector(1)=PictureURLLarge";
+    
+        // Create temporary object to store values in Firebase
+        var userSearch = {
+        keywords: keywords,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        }
         
         // Store new object in Firebase
         database.ref("search-page").push(userSearch);
@@ -252,7 +295,7 @@ $(document).ready(function () {
         }).then(function (resEtsy) {
             etsyResponseObj = resEtsy;
             etsyForLoop(0);
-            // Display columns once for loops start
+            // Display columns, more-button once for loops start
             $(".loadingDiv").css("display", "none");
             $("#columnone").css("display", "inline-block");
             $("#columntwo").css("display", "inline-block");
@@ -293,9 +336,25 @@ $(document).ready(function () {
 
         // Send Ebay API request, display at search.html
         ebayAPI();
+    });
 
-        // Display "More Choices" button
-        $(".btn-more").css("display", "inline-block");
+    // Retrieve values from search on search.html
+    $("#sidenav-search-search").on("click", function (event) {
+        // event.preventDefault() prevents the form from trying to submit itself.
+        event.preventDefault();
+        console.log("Sidebar Working!")
+        // Clear previous search results from HTML
+        $("#columnone").empty();
+        $("#columntwo").empty();
+
+        // Retrieve user search parameters
+        getParametersSidenav();
+
+        // Send Etsy API request, display at search.html
+        etsyAPI();
+
+        // Send Ebay API request, display at search.html
+        ebayAPI()
     });
 
     // Retrieve values from search on home page and stores in local storage
@@ -455,9 +514,6 @@ $(document).ready(function () {
 
             // Append new row to the table
             $("#cart-list").append(newRow);
-
         }
-
     }
-
 });
