@@ -130,7 +130,7 @@ $(document).ready(function () {
             var itemImage = $("<img>");
 
             // Add image source and responsive-img class
-            itemImage.attr("src", image).addClass("responsive-img");
+            itemImage.attr("src", image).addClass("responsive-img").attr("id", "product-image");
 
             // Creat URL to display in HTML
             var displayURL = $("<a>").attr("href", itemURL).attr("target", "_blank");
@@ -199,7 +199,7 @@ $(document).ready(function () {
             var ebayItemImage = $("<img>");
 
             // Add image source and responsive-img class
-            ebayItemImage.attr("src", ebayImage).addClass("responsive-img");
+            ebayItemImage.attr("src", ebayImage).addClass("responsive-img").attr("id", "product-image");
 
             // Creat URL to display in HTML
             var ebayDisplayURL = $("<a>").attr("href", ebayItemURL).attr("target", "_blank");
