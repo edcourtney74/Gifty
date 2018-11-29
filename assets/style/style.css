@@ -233,6 +233,20 @@ h5 {
     margin-bottom: 10px;
 }
 
+.fav-btn {
+    border: none;
+    margin-bottom: 15px;
+}
+
+.fav-btn:focus {
+    background: none;
+}
+
+.fav-btn a {
+    background: #20b88f;
+    font-family: 'Lato';
+}
+
 /* Search Bar Right */
 
 .btn-more {
