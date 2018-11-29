@@ -44,13 +44,28 @@ var favoritedPrices = [];
 // FUNCTIONS
 $(document).ready(function () {
 
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAgtSklBN3FCi1rXJSg92rBN1ynvMRi9TU",
+        authDomain: "gifty-bf8e4.firebaseapp.com",
+        databaseURL: "https://gifty-bf8e4.firebaseio.com",
+        projectId: "gifty-bf8e4",
+        storageBucket: "gifty-bf8e4.appspot.com",
+        messagingSenderId: "954580702267"
+    };
+
+    firebase.initializeApp(config);
+
+    // Store Firebase in a variable
+    database = firebase.database();
+
     // GLOBAL FUNCTIONS===============================================================
     // Function to show localStorage 
     function showlocalstorage() {
-        for (let i = 0; i < 4; i++) {
-            $("#recentlyviewed").append(localStorage.getItem("title" + "description" + "itemURL" + "image" + i));
-        }
-    };
+            for (let i = 0; i < 4; i++) {
+                $("#recentlyviewed").append(localStorage.getItem("title" + "description" + "itemURL" + "image" + i));
+            }
+        };
 
     // Function to retrieve user parameters from search.html
     function getParametersSearch() {
@@ -83,8 +98,19 @@ $(document).ready(function () {
         queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywords + "&min_price=" + minPrice + "&max_price=" + maxPrice + "&includes=MainImage";
 
         // Create eBay queryURL for API requests
-        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywords + "&itemFilter(0).name=MinPrice&itemFilter(0).value=" + minPrice + "&itemFilter(1).name=MaxPrice&itemFilter(1).value=" + maxPrice + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector=PictureURLSuperSize";
-    }
+        queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywords + "&itemFilter(0).name=MinPrice&itemFilter(0).value=" + minPrice + "&itemFilter(1).name=MaxPrice&itemFilter(1).value=" + maxPrice + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector(0)=PictureURLSuperSize&outputSelector(1)=PictureURLLarge";
+    
+        // Create temporary object to store values in Firebase
+        var userSearch = {
+        keywords: keywords,
+        minPrice: minPrice,
+        maxPrice: maxPrice,
+        }
+        console.log("User search object: " + userSearch);
+        
+        // Store new object in Firebase
+        database.ref("search-page").push(userSearch);
+    }        
 
     // Function for Etsy for loop that passes in new iterator number to ask for 
     // four more items
@@ -150,9 +176,19 @@ $(document).ready(function () {
             // Create variables needed                        
             var ebayTitle = ebayResponseObj[x].title;
             var ebayItemURL = ebayResponseObj[x].viewItemURL;
-            var ebayImage = ebayResponseObj[x].pictureURLSuperSize;
             var ebayItemPrice = ebayResponseObj[x].sellingStatus[0].convertedCurrentPrice[0]["__value__"];
+            var ebayImage;
 
+            // Check to see if pictureURLSuperSize is in API
+            // if not, check for pictureURLLarge, if not use galleryURL
+            if (ebayResponseObj[x].pictureURLSuperSize) {
+                ebayImage = ebayResponseObj[x].pictureURLSuperSize                
+            } else if (ebayResponseObj[x].pictureURLLarge) {
+                ebayImage = ebayResponseObj[x].pictureURLLarge
+            } else {
+                ebayImage = ebayResponseObj[x].galleryURL
+            };          
+            
             // Create overall div to display in HTML and can be clicked to add to shopping cart
             var ebayItemDiv = $("<div>")
 
@@ -255,11 +291,6 @@ $(document).ready(function () {
 
         // Display "More Choices" button
         $(".btn-more").css("display", "inline-block");
-
-        // Reset keyword, min price and max price values for next search
-        keywords = "";
-        minPrice = 0;
-        maxPrice = 1000000000;
     });
 
     // Retrieve values from search on home page and stores in local storage
@@ -274,6 +305,14 @@ $(document).ready(function () {
         // Create variable containing user keywords
         keywords = $("#keyword-index").val().trim();
 
+        // Create temporary object to store values in Firebase
+        var userHomeSearch = {
+            keywords: keywords,
+            }
+            
+        // Store new object in Firebase
+        database.ref("home-page").push(userHomeSearch);
+        
         // Store user keywords in localStorage
         localStorage.setItem("storage-keywords", keywords);
 
@@ -289,7 +328,7 @@ $(document).ready(function () {
         etsyIterator += 4;
         ebayIterator += 4;
         console.log("Etsy iterator: " + etsyIterator);
-        
+
         // Run Etsy For Loop
         etsyForLoop(etsyIterator);
         ebayForLoop(etsyIterator);
@@ -306,15 +345,27 @@ $(document).ready(function () {
 
         var cartPrice = $(this).attr("cart-price");
 
+        // Create temporary object to store values in Firebase
+        var userFavorite = {
+            title: cartTitle,
+            price: cartPrice,
+            URL: cartURL
+            }
+            
+        // Store new object in Firebase
+        database.ref("favorited").push(userFavorite);
+
         // Push attributes into array
         favoritedImages.push(cartImage);
         favoritedTitles.push(cartTitle);
+        console.log("Items in titles array: " + favoritedTitles);
         favoritedURLs.push(cartURL);
         favoritedPrices.push(cartPrice);
 
         // Store user keywords in localStorage
         localStorage.setItem("favoritedImages", JSON.stringify(favoritedImages));
         localStorage.setItem("favoritedTitles", JSON.stringify(favoritedTitles));
+        console.log("Items in titles array: " + favoritedTitles);
         localStorage.setItem("favoritedURLs", JSON.stringify(favoritedURLs));
         localStorage.setItem("favoritedPrices", JSON.stringify(favoritedPrices));
     })
@@ -358,20 +409,32 @@ $(document).ready(function () {
         // For Loop to go through favorites arrays and display in HTML    
         for (z = 0; z < favoritedTitlesArray.length; z++) {
 
+            // Create link to wrap around img
+            var imageDisplayURL = $("<a>")
+            imageDisplayURL.attr("href", favoritedURLsArray[z]).attr("target", "_blank");
+
             // Create variable for image to display in table
             var favoritedImageDisplay = $("<img>");
             // Add src attribute from favoritedImagesArray
             favoritedImageDisplay.attr("src", favoritedImagesArray[z])
 
+            // Add image to link
+            imageDisplayURL.append(favoritedImageDisplay);
+
+            // Add commas to price
+            var displayPriceCart = parseFloat(favoritedPricesArray[z]).toLocaleString('en');
+
+            // Add $ to price
+            displayPriceCart = "$" + displayPriceCart;
 
             // Create new row for each array item
             var newRow = $("<tr>").append(
                 // Image column adds class cart-image for CSS, appends image
-                $("<td>").addClass("cart-image").append(favoritedImageDisplay),
+                $("<td>").addClass("cart-image").append(imageDisplayURL),
                 // Add title with URL
                 $("<td>").html("<a href='" + favoritedURLsArray[z] + "' target='_blank'>" + favoritedTitlesArray[z] + "</a>"),
                 // Add price
-                $("<td>").text(favoritedPricesArray[z]),
+                $("<td>").text(displayPriceCart),
             );
 
             // Append new row to the table
