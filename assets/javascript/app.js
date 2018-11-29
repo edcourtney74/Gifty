@@ -252,6 +252,11 @@ $(document).ready(function () {
         }).then(function (resEtsy) {
             etsyResponseObj = resEtsy;
             etsyForLoop(0);
+            // Display columns once for loops start
+            $(".loadingDiv").css("display", "none");
+            $("#columnone").css("display", "inline-block");
+            $("#columntwo").css("display", "inline-block");
+            $(".btn-more").css("display", "inline-block");
         });
     }
 
@@ -375,7 +380,12 @@ $(document).ready(function () {
 
     // PROCESS TO START ON SEARCH PAGE LOAD==============================
     if ($("body").is("#search-pg")) {
-
+        
+        // Hide column displays until API request is returned
+        $("#columnone").css("display", "none");       
+        $("#columntwo").css("display", "none");
+        $(".btn-more").css("display", "none");       
+       
         // Assign value from localStorage to keywordHome variable for API requests 
         var keywordHome = localStorage.getItem("storage-keywords");
 
@@ -383,7 +393,7 @@ $(document).ready(function () {
         queryEtsyURL = "https://openapi.etsy.com/v2/listings/active?api_key=jydjjl78x1gb73jboqntx9o1&keywords=" + keywordHome + "&includes=MainImage";
         queryEbayURL = "https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=EdCourtn-Gifty-PRD-dc2330105-18ab1ff8&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&keywords=" + keywordHome + "&itemFilter.paramName=Currency&itemFilter.paramValue=USD&outputSelector=PictureURLSuperSize";
 
-        // Do API requests, display in HTLM for Etsy, eBay
+        // Do API requests, display in HTML for Etsy, eBay
         etsyAPI();
         ebayAPI();
 
@@ -394,6 +404,12 @@ $(document).ready(function () {
         keywords = "";
         minPrice = 0;
         maxPrice = 1000000000;
+
+        // Put previous favorites back into favorites arrays
+        var favoritedImages = JSON.parse(localStorage.getItem("favoritedImages"));
+        var favoritedTitles = JSON.parse(localStorage.getItem("favoritedTitles"));
+        var favoritedURLs = JSON.parse(localStorage.getItem("favoritedURLs"));
+        var favoritedPrices = JSON.parse(localStorage.getItem("favoritedPrices"));
     };
 
     // PROCESS TO START ON CART PAGE LOAD========================================
