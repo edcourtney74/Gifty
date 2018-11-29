@@ -194,6 +194,10 @@ img {
     padding-top: 2%;
 }
 
+#hamburger {
+    display: none;
+}
+
 #height-control {
     height: 100%;
     margin: 0;
@@ -296,6 +300,10 @@ img {
 /* 860px - Tablet */
 @media screen and (max-width: 860px){
 
+    .search-tagline {
+        font-size: 30px;
+    }
+
     /* Search Form */
 
     #search-title {
@@ -344,18 +352,22 @@ img {
     }
 
     .search-tagline {
+        float: left;
         font-size: 30px;
+        display: inline-block;
+    }
+
+    #hamburger {
+        display: inline-block;
+        float: right;
+        margin-top: 5%;
+        color: #20b88f;
     }
 
     /* Right Side of Page */
 
     .searchBarside {
         display: none;
-    }
-
-    .right-responsive {
-        position: fixed;
-        z-index: 10;
     }
 }
 
