@@ -209,6 +209,10 @@
     display: none;
 }
 
+#whitespace {
+    display: none;
+}
+
 #height-control {
     height: 100%;
     margin: 0;
@@ -418,6 +422,11 @@ p {
         float: right;
         margin-top: 4%;
         color: #20b88f;
+    }
+
+    #whitespace {
+        display: block;
+        margin: 0;
     }
 
     .sidenav {
