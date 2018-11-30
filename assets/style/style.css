@@ -54,6 +54,7 @@
     font-family: 'Lato';
     color: white;
     font-size: 200%;
+    margin: 40px 0px 40px 0px;
 }
 
 /* Search Bar */
@@ -208,6 +209,10 @@
     display: none;
 }
 
+#whitespace {
+    display: none;
+}
+
 #height-control {
     height: 100%;
     margin: 0;
@@ -237,9 +242,13 @@ h5 {
     margin-bottom: 10px;
 }
 
+p {
+    margin: 5px;
+}
+
 .fav-btn {
     border: none;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 .fav-btn:focus {
@@ -313,6 +322,12 @@ h5 {
     -webkit-box-shadow: 0 1px 0 0 white;
 }
 
+#search-search {
+    background-color: white;
+    color: #20b88f;
+    margin: 15% 0% 15% 0%;
+}
+
 #sidenav-keyword-search, #sidenav-minprice-search, #sidenav-maxprice-search {
     color: white;
     border-bottom: 1px solid white !important; 
@@ -323,7 +338,7 @@ h5 {
     -webkit-box-shadow: 0 1px 0 0 white;
 }
 
-#search-search {
+#sidenav-search-search {
     background-color: white;
     color: #20b88f;
     margin: 15% 0% 15% 0%;
@@ -409,6 +424,11 @@ h5 {
         color: #20b88f;
     }
 
+    #whitespace {
+        display: block;
+        margin: 0;
+    }
+
     .sidenav {
         display: block;
     }
@@ -432,6 +452,10 @@ nav {
 
 .btn-clear {
     background-color: #34489f;
+}
+
+.btn-clear:hover {
+    background-color: #455fd4;
 }
 
 .cart-image {
