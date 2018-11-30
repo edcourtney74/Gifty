@@ -318,6 +318,12 @@ p {
     -webkit-box-shadow: 0 1px 0 0 white;
 }
 
+#search-search {
+    background-color: white;
+    color: #20b88f;
+    margin: 15% 0% 15% 0%;
+}
+
 #sidenav-keyword-search, #sidenav-minprice-search, #sidenav-maxprice-search {
     color: white;
     border-bottom: 1px solid white !important; 
@@ -328,7 +334,7 @@ p {
     -webkit-box-shadow: 0 1px 0 0 white;
 }
 
-#search-search {
+#sidenav-search-search {
     background-color: white;
     color: #20b88f;
     margin: 15% 0% 15% 0%;
