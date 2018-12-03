@@ -16,3 +16,19 @@ https://edcourtney74.github.io/Gifty/cart.html
 ## Future of Gifty
 
 In the future Gifty will be fine tuning the search parameters to sort results based on items price, release date, and popularity.  We will also be adding other API's and companies that sell handmade and original gifts.  As well as forming partnerships with companies we search to be compensated by directing our customers to checkout locations of the items listed.  Future releases will also have a feature of creating a user profile to save feedback and interaction information, as well as creating sub profiles for the intended gift recipient.  So that you can sign in and be recognized by your search history and preferences for individuals you previously purchased gifts for. 
+
+  ***
+### Home page
+![Home Page photo](https://github.com/edcourtney74/Gifty/blob/master/assets/images/main_page.png "Home page")
+
+### Search page
+![Search page photo](https://github.com/edcourtney74/Gifty/blob/master/assets/images/search_page.png "Search page")
+
+### Wishlist
+![Wishlist photo](https://github.com/edcourtney74/Gifty/blob/master/assets/images/wishlist.png "Wishlist")
+
+### Home page - Mobile
+![Home page mobile](https://github.com/edcourtney74/Gifty/blob/master/assets/images/main_mobile.png "Home-Mobile") 
+
+### Search bar - Mobile
+![Search bar mobile](https://github.com/edcourtney74/Gifty/blob/master/assets/images/search_mobile.png "Search-Mobile")
