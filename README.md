@@ -4,6 +4,8 @@ Gifty is a search tool for finding handmade and original gifts.
 
 https://edcourtney74.github.io/Gifty/
 
+**Note:** This project was built on the front end without Node.js. This will soon be updated. Until then, the search function needs a Chrome extension in order to work properly. Otherwise the user receives a CORS error. The Chrome extension that enables this site to work can be found at https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en. 
+
 ## How it works
 
 Gifty takes user input from a search bar including keywords, minimum and maximum price.
