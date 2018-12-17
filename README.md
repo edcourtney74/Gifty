@@ -35,4 +35,4 @@ In the future Gifty will be fine tuning the search parameters to sort results ba
 ### Search bar - Mobile
 ![Search bar mobile](https://github.com/edcourtney74/Gifty/blob/master/assets/images/search_mobile.png "Search-Mobile")
 
-Test
+Test 2
